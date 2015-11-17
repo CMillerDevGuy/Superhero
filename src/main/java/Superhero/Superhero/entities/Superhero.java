@@ -1,14 +1,20 @@
 package Superhero.Superhero.entities;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
+
 
 @Entity
 @Table(name = "Superheroes", schema = "public")
@@ -39,25 +45,22 @@ public class Superhero {
 	@NotNull
 	private String weight;
 
-	//@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.EAGER)
-	//@JoinTable(name = "Powers", joinColumns = { @JoinColumn(name = "powersId") }, inverseJoinColumns = {@JoinColumn(name = "superheroId") })
-	//@OneToMany
-	//@JoinColumn(name = "powerId")
-	//private Set<Power> powers = new HashSet<Power>();
-	//@ManyToOne
-	//@JoinColumn(name = "powerId")
-	//private Power powers;
-
-	/*public Power getPowers() {
-		return powers;
-	}
-
-	public void setPowers(Power powers) {
-		this.powers = powers;
-	}*/
+	
+	@OneToMany
+	@JoinColumn(name = "power_id")
+	private Set<Power> powers;
+	
 
 	public Integer getSuperheroId() {
 		return superheroId;
+	}
+
+	public Set<Power> getPowers() {
+		return powers;
+	}
+
+	public void setPowers(Set<Power> powers) {
+		this.powers = powers;
 	}
 
 	public void setSuperheroId(Integer superheroId) {

@@ -14,7 +14,7 @@ public class Power {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer powerId;
+	private Integer id;
 
 	@NotNull
 	@Column(name = "powerName", unique = true)
@@ -25,17 +25,15 @@ public class Power {
 
 	@NotNull
 	private String powerDescription;
-	
-	//@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.EAGER)
-	//@JoinTable(name = "Superheroes", joinColumns = { @JoinColumn(name = "superheroId") }, inverseJoinColumns = {@JoinColumn(name = "powersId") })
-	//private Set<Superhero> superhero = new HashSet<Superhero> ();
 
-	public Integer getPowersId() {
-		return powerId;
+
+
+	public Integer getId() {
+		return id;
 	}
 
-	public void setPowersId(Integer powersId) {
-		this.powerId = powersId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getPowerName() {

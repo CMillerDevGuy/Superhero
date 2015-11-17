@@ -1,11 +1,14 @@
 package Superhero.Superhero.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -26,12 +29,22 @@ public class SuperheroTeam {
 	@NotNull
 	private boolean publicSupport;
 	
-//	@NotNull
-//	private Superhero teamLead;
-
+	
 	@ManyToOne
-	@JoinColumn(name = "superheroId")
-	private Superhero superhero;
+	@JoinColumn(name = "teamlead_id")
+	private Superhero teamLead;
+
+	@OneToMany
+	@JoinColumn(name = "superhero_id")
+	private List<Superhero> superheros;
+	
+	public Superhero getTeamLead() {
+		return teamLead;
+	}
+
+	public void setTeamLead(Superhero teamLead) {
+		this.teamLead = teamLead;
+	}
 
 	public Integer getTeamId() {
 		return teamId;
@@ -57,20 +70,12 @@ public class SuperheroTeam {
 		this.publicSupport = publicSupport;
 	}
 
-	/*public Superhero getTeamLead() {
-		return teamLead;
+	public List<Superhero> getSuperheros() {
+		return superheros;
 	}
 
-	public void setTeamLead(Superhero teamLead) {
-		this.teamLead = teamLead;
-	}*/
-
-	public Superhero getSuperhero() {
-		return superhero;
-	}
-
-	public void setSuperhero(Superhero superhero) {
-		this.superhero = superhero;
+	public void setSuperheros(List<Superhero> superheros) {
+		this.superheros = superheros;
 	}
 
 }
